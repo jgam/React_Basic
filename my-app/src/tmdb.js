@@ -87,7 +87,7 @@ theMovieDb.common = {
 
     xhr.onload = function(e) {
       if (xhr.readyState === 4) {
-        if (xhr.status === status) {
+        if (xhr.status === status) {d
           success(xhr.responseText);
         } else {
           error(xhr.responseText);
