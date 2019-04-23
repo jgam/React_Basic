@@ -19,6 +19,11 @@ class App extends Component {
   }
 
   componentDidMount(){//this is this.setState() which can be used when updating the state
+    fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
+    .then(potato => potato.json())
+    .then(json => console.log(json))
+    .catch(err => console.log(err))
+    /*
     setTimeout(()=>{
       this.setState({
         movies:[
@@ -37,7 +42,7 @@ class App extends Component {
         ]
       })
     },5000)
-
+    */
   }
 
   //state is an object and react component. Whenever the state changes, the component renders.
