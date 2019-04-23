@@ -18,10 +18,30 @@ class App extends Component {
     }, 5000)
   }
 
+  _makeMovies = () => {
+
+  }
+
+  _callApi = () => {
+    fetch()
+  }
+
+  async _getMovies = () => {
+    const movies = await this._callApi();//await?=>waiting for this._callApi() to be finished
+    //this line doesn't get run until the await variable finishes
+  }
+
   componentDidMount(){//this is this.setState() which can be used when updating the state
+    this._getMovies();
     fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
     .then(potato => potato.json())
-    .then(json => console.log(json))
+    .then(json => {
+      this.setState({
+        movies: json.data.movies
+      })
+      //.then(() => .then())
+      //CALLBACK !!!!!
+    })
     .catch(err => console.log(err))
     /*
     setTimeout(()=>{
