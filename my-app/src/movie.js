@@ -5,8 +5,8 @@ import './movie.css';
 class Movie extends Component {
 
     static propTypes = {//this checks which kind of datatypes and if it is required or not
-        title: React.propTypes.string,
-        poster: React.PropTypes.string
+        title: PropTypes.string,
+        poster: PropTypes.string
     }
 
     render(){
