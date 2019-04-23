@@ -18,11 +18,24 @@ const movies = [
 ]
 
 class App extends Component {
+
+  //Render: componentWillMount() -> render() -> componentDidMount()
+
+  //Update: componentWillReceiveProps() -> shouldComponentUpdate()==true -> componentWillUpdate() -> render() -> componentDidUpdate()
+
+  componentWillMount(){
+
+  }
+
+  componentDidMount(){
+
+  }
+
   render() {
     return (//jsx
       <div className="App">
-      {movies.map(movie =>{//map goes through all the necessary loops and works like a for loop
-        return <Movie title={movie.title} poster={movie.poster}/>
+      {movies.map((movie, index) =>{//map goes through all the necessary loops and works like a for loop
+        return <Movie title={movie.title} poster={movie.poster} key={index}/>//how do we make sure this is the right movie
       })}
         <script type="text/javascript" src="./tmdb.js"></script>
       </div>
