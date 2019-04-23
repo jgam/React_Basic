@@ -23,26 +23,21 @@ class App extends Component {
   }
 
   _callApi = () => {
-    fetch()
+    return fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
+    .then(potato => potato.json())
+    .then(json => json.data.movies)
+    .catch(err => console.log(err))
   }
 
-  async _getMovies = () => {
+  _getMovies = async () => {
     const movies = await this._callApi();//await?=>waiting for this._callApi() to be finished
     //this line doesn't get run until the await variable finishes
+    this.setState({movies});
   }
 
   componentDidMount(){//this is this.setState() which can be used when updating the state
     this._getMovies();
-    fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
-    .then(potato => potato.json())
-    .then(json => {
-      this.setState({
-        movies: json.data.movies
-      })
-      //.then(() => .then())
-      //CALLBACK !!!!!
-    })
-    .catch(err => console.log(err))
+
     /*
     setTimeout(()=>{
       this.setState({
@@ -73,9 +68,10 @@ class App extends Component {
 
   _renderMovies = () => {
     const movies = this.state.movies.map((movie, index) => {
-      return <Movie title={movie.title} poster={movie.poster} key={index} />
+      console.log(movie)
+      return <Movie title={movie.title} poster={movie.large_cover_image} key={index} />
     })
-    console.log(movies)//bunch of arrays
+    //bunch of arrays
     return movies
   }
 
