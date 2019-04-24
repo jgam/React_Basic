@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import Movie from './movie'
+import Movie from './Movie'
 
 
 class App extends Component {
@@ -67,19 +67,25 @@ class App extends Component {
   }
 
   _renderMovies = () => {
-    const movies = this.state.movies.map((movie, index) => {
+    const movies = this.state.movies.map((movie) => {
       console.log(movie)
-      return <Movie title={movie.title} poster={movie.large_cover_image} key={index} />
+      return <Movie 
+        title={movie.title} 
+        poster={movie.medium_cover_image}
+        genres={movie.genres}
+        synopsis={movie.synopsis}
+        key={movie.id}
+         />
     })
     //bunch of arrays
     return movies
   }
 
   render() {
+    const {movies} = this.state;
     return (//jsx
-      <div className="App">
+      <div className={movies ? "App" : "App--loading"}>
         {this.state.movies ? this._renderMovies() : 'Loading'};
-        <script type="text/javascript" src="./tmdb.js"></script>
       </div>
     );
   }
