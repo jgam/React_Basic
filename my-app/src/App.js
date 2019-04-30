@@ -11,6 +11,7 @@ class App extends Component {
   //Update: componentWillReceiveProps() -> shouldComponentUpdate()==true -> componentWillUpdate() -> render() -> componentDidUpdate()
 
   componentWillMount(){
+    console.log('will Mount')
     setTimeout(() => {
       this.setState({
         greeting: 'Hello again!'//whenever the component mounts, we change greeting.
@@ -22,20 +23,30 @@ class App extends Component {
 
   }
 
-  _callApi = () => {
-    return fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
+  _callApi = (url) => {
+    return fetch(url)
     .then(potato => potato.json())
     .then(json => json.data.movies)
     .catch(err => console.log(err))
   }
 
+  _getData = async (inputs) => {//this is requesting different url function
+    //parse the inputs here
+    const url = "https://yts.am/api/v2/list_movies.json?sort_by=download_count";
+    const getData = await this._callApi(url);
+
+    this.setState({getData});
+    
+  }
+
   _getMovies = async () => {
-    const movies = await this._callApi();//await?=>waiting for this._callApi() to be finished
+    const movies = await this._callApi("https://yts.am/api/v2/list_movies.json?sort_by=download_count");//await?=>waiting for this._callApi() to be finished
     //this line doesn't get run until the await variable finishes
     this.setState({movies});
   }
 
   componentDidMount(){//this is this.setState() which can be used when updating the state
+    console.log('aaaa')
     this._getMovies();
 
     /*
@@ -81,11 +92,15 @@ class App extends Component {
     return movies
   }
 
+  _LoadingPart = () => {//current most watched movies should be placed here
+    return 'Loadingㅎㅎ';
+  }
+
   render() {
     const {movies} = this.state;
     return (//jsx
       <div className={movies ? "App" : "App--loading"}>
-        {this.state.movies ? this._renderMovies() : 'Loading'};
+        {this.state.movies ? this._renderMovies() : this._LoadingPart()};
       </div>
     );
   }
