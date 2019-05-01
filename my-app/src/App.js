@@ -129,10 +129,11 @@ class App extends Component {
     this.setState({sortBy: event.target.value});
   }
 
-  _clickSubmit= () => {
+  _clickSubmit= (event) => {
     console.log('submitted')
     alert('A name was submitted: ' + this.state.sortBy);
-    this._jggetData(this.state.sortBy);
+    this._getMovies(this.state.sortBy);
+    event.preventDefault();
   }
 
   _LoadingPart = () => {//current most watched movies should be placed here
@@ -151,6 +152,7 @@ class App extends Component {
           </form>
         </div>
         <div className={movies ? "App" : "App--loading"}>
+          {this.state.sortBy}
           {this.state.movies ? this._renderMovies() : this._LoadingPart()};
         </div>
       </div>
