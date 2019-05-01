@@ -12,11 +12,13 @@ class App extends Component {
 
   componentWillMount(){//make a request
     console.log('will Mount')
+    /*
     setTimeout(() => {
       this.setState({//can't change the state directly.
         greeting: 'Hello again!'//whenever the component mounts, we change greeting.
       })
-    }, 5000)
+    }, 10000)
+    */
   }
 
   _makeMovies = () => {
@@ -42,7 +44,9 @@ class App extends Component {
   _getMovies = async () => {
     const movies = await this._callApi("https://yts.am/api/v2/list_movies.json?sort_by=download_count");//await?=>waiting for this._callApi() to be finished
     //this line doesn't get run until the await variable finishes
+    console.log('before the state: ', this.state);
     this.setState({movies});
+    console.log('after set state: ', this.state);
   }
 
   componentDidMount(){//this is this.setState() which can be used when updating the state
@@ -78,7 +82,7 @@ class App extends Component {
   }
 
   _renderMovies = () => {
-    const movies = this.state.movies.map((movie) => {
+    const movies = this.state.movies.map((movie) => {//change movies to movie
       console.log(movie)
       return <Movie 
         title={movie.title} 
