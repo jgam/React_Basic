@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   _getMovies = async () => {
-    const movies = await this._callApi("https://yts.am/api/v2/list_movies.json?sort_by=rating");//await?=>waiting for this._callApi() to be finished
+    const movies = await this._callApi("https://yts.am/api/v2/list_movies.json?sort_by=download_count");//await?=>waiting for this._callApi() to be finished
     //this line doesn't get run until the await variable finishes
     console.log('before the state: ', this.state);
     this.setState({movies});
@@ -108,15 +108,8 @@ class App extends Component {
     console.log('render');
     const {movies} = this.state;
     return (//jsx
-      <div>
-        <div className="searchMovie">
-          <form>
-            <input type="text" name="sortBy"/>
-          </form>
-        </div>
-        <div className={movies ? "App" : "App--loading"}>
-          {this.state.movies ? this._renderMovies() : this._LoadingPart()};
-        </div>
+      <div className={movies ? "App" : "App--loading"}>
+        {this.state.movies ? this._renderMovies() : this._LoadingPart()};
       </div>
     );
   }
