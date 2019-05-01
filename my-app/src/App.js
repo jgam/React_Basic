@@ -10,10 +10,10 @@ class App extends Component {
 
   //Update: componentWillReceiveProps() -> shouldComponentUpdate()==true -> componentWillUpdate() -> render() -> componentDidUpdate()
 
-  componentWillMount(){
+  componentWillMount(){//make a request
     console.log('will Mount')
     setTimeout(() => {
-      this.setState({
+      this.setState({//can't change the state directly.
         greeting: 'Hello again!'//whenever the component mounts, we change greeting.
       })
     }, 5000)
