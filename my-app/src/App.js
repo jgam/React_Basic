@@ -12,7 +12,16 @@ class App extends Component {
 
   componentWillMount(){//make a request
     console.log('will Mount')
-    this._getMovies();
+    console.log(this.state);
+    if(this.state.sortBy){
+      console.log('shouldbe there')
+      this._getMovies(this.state.sortBy);
+    }
+    else{
+      console.log('hahaha');
+      this._getMovies();
+    }
+    
     /*
     setTimeout(() => {
       this.setState({//can't change the state directly.
@@ -35,19 +44,29 @@ class App extends Component {
 
   _jggetData = async (inputs) => {//this is requesting different url function
     //parse the inputs here
-    const url = "https://yts.am/api/v2/list_movies.json?sort_by=download_count";
-    const getData = await this._callApi(url);
+    console.log('_jggetData')
+    const url = "https://yts.am/api/v2/list_movies.json?sort_by=";
+    const getData = await this._callApi(url+inputs);
 
     this.setState({getData});
     
   }
   componentWillUpdate(){
-    console.log('updatefd!!')
+    console.log('componenWillUpdate')
   }
 
-  _getMovies = async () => {
-    const movies = await this._callApi("https://yts.am/api/v2/list_movies.json?sort_by=rating");//await?=>waiting for this._callApi() to be finished
+  _getMovies = async (input) => {
+    let url = ''
+    console.log('here in get movies')
+    console.log(input);
+    if (!input){
+      url = "https://yts.am/api/v2/list_movies.json?sort_by=year";//await?=>waiting for this._callApi() to be finished
     //this line doesn't get run until the await variable finishes
+    }
+    else{
+      url = "https://yts.am/api/v2/list_movies.json?sort_by="+input;
+    }
+    const movies = await this._callApi(url);
     console.log('before the state: ', this.state);
     this.setState({movies});
     console.log('after set state: ', this.state);
@@ -86,6 +105,7 @@ class App extends Component {
   }
 
   _renderMovies = () => {
+    console.log('state sortBy is :', this.state.sortBy);
     const movies = this.state.movies.map((movie) => {//change movies to movie
       //console.log(movie)
       return <Movie 
@@ -100,6 +120,21 @@ class App extends Component {
     return movies
   }
 
+  componentWillReceiveProps(){
+    console.log('componentWillReceive Props')
+  }
+
+  _stateclickSubmit = (event) => {
+    console.log('state changed click submit')
+    this.setState({sortBy: event.target.value});
+  }
+
+  _clickSubmit= () => {
+    console.log('submitted')
+    alert('A name was submitted: ' + this.state.sortBy);
+    this._jggetData(this.state.sortBy);
+  }
+
   _LoadingPart = () => {//current most watched movies should be placed here
     return 'Loadingㅎㅎ';
   }
@@ -110,8 +145,9 @@ class App extends Component {
     return (//jsx
       <div>
         <div className="searchMovie">
-          <form>
-            <input type="text" name="sortBy"/>
+          <form onSubmit={this._clickSubmit}>
+            <input type="text" name="sortBy" value={this.state.sortBy} onChange={this._stateclickSubmit}/>
+            <input type="submit" value="Submit" />
           </form>
         </div>
         <div className={movies ? "App" : "App--loading"}>
