@@ -144,6 +144,7 @@ class App extends Component {
     alert('three movies are : ' + this.state.movie1 + this.state.movie2 + this.state.movie3);
     //here is the comparison logic and return filter queiries
     // genres, language, rating, runtime, year
+    
     //thie._getMovies(new_sorting)
     
     event.preventDefault();
