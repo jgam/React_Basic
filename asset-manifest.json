@@ -1,13 +1,13 @@
 {
-  "main.css": "/korin_i/React_Basic/static/css/main.0bdc8b33.chunk.css",
-  "main.js": "/korin_i/React_Basic/static/js/main.0a7f83be.chunk.js",
-  "main.js.map": "/korin_i/React_Basic/static/js/main.0a7f83be.chunk.js.map",
-  "runtime~main.js": "/korin_i/React_Basic/static/js/runtime~main.116ed8a8.js",
-  "runtime~main.js.map": "/korin_i/React_Basic/static/js/runtime~main.116ed8a8.js.map",
-  "static/js/2.c44e2cb5.chunk.js": "/korin_i/React_Basic/static/js/2.c44e2cb5.chunk.js",
-  "static/js/2.c44e2cb5.chunk.js.map": "/korin_i/React_Basic/static/js/2.c44e2cb5.chunk.js.map",
-  "index.html": "/korin_i/React_Basic/index.html",
-  "precache-manifest.b44277ae448e6b492defb5bc0d1d809a.js": "/korin_i/React_Basic/precache-manifest.b44277ae448e6b492defb5bc0d1d809a.js",
-  "service-worker.js": "/korin_i/React_Basic/service-worker.js",
-  "static/css/main.0bdc8b33.chunk.css.map": "/korin_i/React_Basic/static/css/main.0bdc8b33.chunk.css.map"
+  "main.css": "/React_Basic/static/css/main.0bdc8b33.chunk.css",
+  "main.js": "/React_Basic/static/js/main.bb2c0bb7.chunk.js",
+  "main.js.map": "/React_Basic/static/js/main.bb2c0bb7.chunk.js.map",
+  "runtime~main.js": "/React_Basic/static/js/runtime~main.458c2b7c.js",
+  "runtime~main.js.map": "/React_Basic/static/js/runtime~main.458c2b7c.js.map",
+  "static/js/2.c44e2cb5.chunk.js": "/React_Basic/static/js/2.c44e2cb5.chunk.js",
+  "static/js/2.c44e2cb5.chunk.js.map": "/React_Basic/static/js/2.c44e2cb5.chunk.js.map",
+  "index.html": "/React_Basic/index.html",
+  "precache-manifest.6ee8f0fac8628530e7a2976fe2b4d1c3.js": "/React_Basic/precache-manifest.6ee8f0fac8628530e7a2976fe2b4d1c3.js",
+  "service-worker.js": "/React_Basic/service-worker.js",
+  "static/css/main.0bdc8b33.chunk.css.map": "/React_Basic/static/css/main.0bdc8b33.chunk.css.map"
 }
